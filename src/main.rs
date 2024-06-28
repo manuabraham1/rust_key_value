@@ -38,6 +38,7 @@ fn update_value(map: &mut BTreeMap<String, String>, key: String, value: String) 
 }
 
 
-fn get_value(map: &BTreeMap<String, String>, key: &str) -> Option<String> {
+fn get_value(map: &BTreeMap
+    <String, String>, key: &str) -> Option<String> {
     map.get(key).cloned()
 }
