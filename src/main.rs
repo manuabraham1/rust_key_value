@@ -1,44 +1,31 @@
-use std::collections::BTreeMap;
+mod bst; // Import the bst module
 
 fn main() {
-    let mut obj= BTreeMap::new();
+    let mut bst = bst::BST::new();
 
-    obj.insert(String::from("Name"), String::from("Manu"));
-    obj.insert(String::from("Age"), String::from("23"));
+    bst.insert(6, "Manu");
+    bst.insert(5, "23");
+    bst.insert(7, "Kochi");
 
+    bst.print_in_order();
 
-    print!("Before Update: \n");
-    for (key, value) in &obj{
-        println!("{}: {}", key, value);
-    }
-
-    update_value(&mut obj, String::from("Age"), String::from("24"));
-
-    println!("\nAfter update:");
-    for (key, value) in &obj {
-        println!("{}: {}", key, value);
-    }
-
-    if let Some(age) = get_value(&obj, "Age") {
-        println!("\nValue for 'Age': {}", age);
+    if let Some(value) = bst.get(&5) {
+        println!("Found: {}", value);
     } else {
-        println!("\nKey 'Age' not found");
+        println!("Not Found");
     }
 
-    update_value(&mut obj, String::from("Height"), String::from("150"));
+    bst.update(6, "Manu Abraham");
 
-    println!("\nAfter inserting new key:");
-    for (key, value) in &obj {
-        println!("{}: {}", key, value);
+    bst.update(20, "IT");
+
+    if let Some(value) = bst.get(&7) {
+        println!("Found: {}", value);
+    } else {
+        println!("Not Found");
     }
-}
 
-fn update_value(map: &mut BTreeMap<String, String>, key: String, value: String) {
-    map.insert(key, value);
-}
-
-
-fn get_value(map: &BTreeMap
-    <String, String>, key: &str) -> Option<String> {
-    map.get(key).cloned()
+    // Print all key-value pairs in the BST
+    println!("All key-value pairs:");
+    bst.print_in_order();
 }
